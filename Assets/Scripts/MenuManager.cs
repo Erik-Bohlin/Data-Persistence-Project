@@ -5,6 +5,8 @@ public class MenuManager : MonoBehaviour
     public static MenuManager Instance;
     public string input;
 
+    public int highScore;
+
     private void Awake()
     {
         if (Instance != null)
