@@ -32,4 +32,12 @@ public class MenuUIHandler : MonoBehaviour
         Application.Quit();
 #endif
     }
+
+
+    public void ClearPlayerPrefs()
+    {
+        PlayerPrefs.DeleteAll();
+        PlayerPrefs.Save();
+        Debug.Log("PlayerPrefs cleared!");
+    }
 }

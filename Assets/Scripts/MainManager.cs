@@ -37,8 +37,9 @@ public class MainManager : MonoBehaviour
                 brick.onDestroyed.AddListener(AddPoint);
             }
         }
+        string bestPlayerName = PlayerPrefs.GetString("HighScoreName", "");
+        bestScoreText.text = "Best Score : " + bestPlayerName + " : " + MenuManager.Instance.highScore;
 
-        bestScoreText.text = "Best Score : " + MenuManager.Instance.input + " : " + MenuManager.Instance.highScore;
     }
 
     private void Update()
@@ -58,7 +59,8 @@ public class MainManager : MonoBehaviour
         }
         else if (m_GameOver)
         {
-            MenuManager.Instance.highScore = m_Points;
+            string bestPlayerName = PlayerPrefs.GetString("HighScoreName", "");
+            bestScoreText.text = "Best Score : " + bestPlayerName + " : " + MenuManager.Instance.highScore;
 
             if (Input.GetKeyDown(KeyCode.Space))
             {
@@ -75,8 +77,19 @@ public class MainManager : MonoBehaviour
 
     public void GameOver()
     {
+
+
         m_GameOver = true;
         GameOverText.SetActive(true);
+
+        if (m_Points > MenuManager.Instance.highScore)
+        {
+            MenuManager.Instance.highScore = m_Points;
+
+            // Save the current input name as the high score name
+            PlayerPrefs.SetString("HighScoreName", MenuManager.Instance.input);
+            MenuManager.Instance.SaveHighScore();
+        }
     }
 
     public void ReturnToMenu()
