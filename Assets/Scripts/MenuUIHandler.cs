@@ -18,6 +18,7 @@ public class MenuUIHandler : MonoBehaviour
     {
         nameInputField.onEndEdit.RemoveAllListeners();
         nameInputField.onEndEdit.AddListener(MenuManager.Instance.ReadStringInput);
+        MenuManager.Instance.UpdateHighScoreText();
     }
     public void StartGame()
     {

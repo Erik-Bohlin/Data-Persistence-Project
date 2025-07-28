@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MenuManager : MonoBehaviour
 {
@@ -6,6 +7,7 @@ public class MenuManager : MonoBehaviour
     public string input;
 
     public int highScore;
+    public Text highScoreText;
 
     private void Awake()
     {
@@ -21,6 +23,24 @@ public class MenuManager : MonoBehaviour
         //Load high score and name
         highScore = PlayerPrefs.GetInt("HighScore", 0);
         input = PlayerPrefs.GetString("HighScoreName", "");
+
+        //string bestPlayerName = PlayerPrefs.GetString("HighScoreName", "");
+        //highScoreText.text = "Best Score : " + bestPlayerName + " : " + MenuManager.Instance.highScore;
+    }
+
+    public void UpdateHighScoreText()
+    {
+        // Always get the latest reference in case the scene changed
+        highScoreText = GameObject.Find("HighScoreText")?.GetComponent<Text>();
+
+        // Always fetch the latest values from PlayerPrefs
+        highScore = PlayerPrefs.GetInt("HighScore", 0);
+        string bestPlayerName = PlayerPrefs.GetString("HighScoreName", "");
+
+        if (highScoreText != null)
+        {
+            highScoreText.text = "Best Score : " + bestPlayerName + " : " + highScore;
+        }
     }
 
     public void ReadStringInput(string s)
