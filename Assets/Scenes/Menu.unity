@@ -1699,7 +1699,7 @@ GameObject:
   - component: {fileID: 1612415543}
   - component: {fileID: 1612415542}
   m_Layer: 5
-  m_Name: BestScoreText
+  m_Name: HighScoreText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1797,6 +1797,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   input: 
   highScore: 0
+  highScoreText: {fileID: 1612415542}
 --- !u!4 &1672107981
 Transform:
   m_ObjectHideFlags: 0
